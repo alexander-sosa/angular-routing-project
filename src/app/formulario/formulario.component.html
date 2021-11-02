@@ -1,0 +1,67 @@
+<body>
+<div class="container">
+    <h2>Formulario de compra</h2><br>
+    <form action="" method="post" class="row g-3" [formGroup]="formulario" (ngSubmit)="process()">
+        <div class="col-md-6">
+            <label for="firstname" class="form-label">Nombre</label>
+            <input type="text" name="name" class="form-control" id="firstname" formControlName="nombre" required>
+        </div>
+        <div class="col-md-6">
+            <label for="lastname" class="form-label">Apellido</label>
+            <input type="text" name="lastname" class="form-control" id="lastname" formControlName="apellido" required>
+        </div>
+        <div class="col-md-4">
+            <label for="email" class="form-label">Correo</label>
+            <input type="email" class="form-control" name="mail" id="email" formControlName="correo" required>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label" for="phone">Carnet de Identidad</label>
+            <input type="text" class="form-control" name="ci" id="ci" formControlName="ci">
+        </div>
+        <div class="col-md-4">
+            <label class="form-label" for="phone">Celular</label>
+            <input type="text" class="form-control" name="phone" id="phone" formControlName="celular">
+        </div>
+        <div class="col-md-10">
+            <label for="buy" class="form-label">Celular a comprar</label>
+            <select name="buy" id="buy" class="form-control" formControlName="modelo" required>
+                <option value="">Selecciona el celular</option>
+                <option *ngFor = "let celular of modelos">{{celular}}</option>
+            </select>            
+        </div>
+        <div class="col-md-2">
+            <label class="form-label" for="cant">Cantidad</label>
+            <input type="number" class="form-control" name="cant" id="cant" formControlName="cantidad" [(ngModel)]="cantidad">
+        </div>
+        <div class="col-md-12">
+            <p style="text-align: center;"><button type="submit" class="btn btn-primary">Enviar</button></p>
+        </div>
+    </form>
+    <br>
+    <div class="container" id="response">
+        <h2>¡Muchas gracias por confiar en Tecno Cel!</h2>
+        <p>
+            <span style="font-weight: bold;">Datos Generales</span>
+            <br> Nombre cliente: {{formulario.value.nombre + " " + formulario.value.apellido}}
+            <br> Correo: {{formulario.value.correo}}
+            <br> CI: {{formulario.value.ci}}
+            <br> Celular: {{formulario.value.celular}}
+            <br> Modelo: {{formulario.value.modelo}}
+
+            <br><br>
+            <span style="font-weight: bold;">Detalle</span>
+            <br> Precio original (unitario): {{precio}}
+            <br> Cantidad: {{formulario.value.cantidad}}
+            <br> Subtotal: {{subtotal}}
+            <br> <span style="color: red;">Descuento:</span> {{descuento}} %
+            <br> El total a pagar es: {{total}}
+        </p>
+    </div>
+</div>
+
+<footer>
+    <br><br>
+    <p style="text-align: center;">Designed by: <a target="_blank" style="color: black;" href="https://www.linkedin.com/in/alexander-sosa-asillanes">Alexander Sosa</a> - 2021 All Rights Reserved © </p>
+    <br><br>
+</footer>
+</body>
